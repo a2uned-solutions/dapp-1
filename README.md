@@ -14,12 +14,16 @@ npm install -g truffle
 
 cd TO_PROJECT_DIRECTORY
 npm install
+```
+
+After the project has been installed run this command to start a Ganache blockchain.
+```
 npm run ganache
 ```
 
 ### Compile and deploy contracts, then launch the app.
 
-In a separate shell
+In a terminal window run these commands.
 
 ```
 npm run migrate
@@ -28,5 +32,6 @@ npm start
 
 This should launch a browser at URL `http://localhost:3000`. If it doesn't, try navigating there directly.
 
-####Learn More
+#### Learn More
+
 This project was bootstrapped with the Ethereum Starter App [Create React dApp](https://github.com/mjhm/create-react-dapp), which leverages the latest [Create React App](./REACT.md) and layers a template for creating Ethereum dApps using [TruffleFramework](http://truffleframework.com/docs/) and [Web3](https://github.com/ethereum/wiki/wiki/JavaScript-API)

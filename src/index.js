@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
+import './assets/styles/App.css';
 
 const env = {
   network: process.env.REACT_APP_ETH_NETWORK || 'development', // Default to Ganache CLI

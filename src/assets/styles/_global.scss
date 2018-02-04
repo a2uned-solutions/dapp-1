@@ -1,0 +1,159 @@
+//-------------------------//
+//-----> Global
+//-------------------------//
+
+html {
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $fPrimary;
+  color: $cPrimary;
+  font-size: 1.8rem;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 4.8rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2.8rem;
+  margin: 0 0 20px 0;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+  margin: 0 0 8px 0;
+}
+
+table {
+  font-size: 1.8rem;
+}
+
+a {
+  color: $cAction;
+  text-decoration: none;
+  transition: color 0.5s;
+
+  &:hover,
+  &:focus {
+    color: $cAction2;
+  }
+}
+
+.btn,
+.btn-primary,
+.button,
+button {
+  background-color: $cAction;
+  color: $cW;
+  border: none;
+  outline: none;
+  padding: 5px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.5s;
+
+  &:hover,
+  &:focus {
+    background: $cAction2;
+    color: $cW;
+  }
+}
+
+// Helper Classes
+.block {
+  display: block;
+}
+
+.no-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.small-title-caps {
+  font-weight: 300;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  display: block;
+}
+
+.c-secondary {
+  color: $cSecondary;
+}
+
+.c-secondary-text {
+  color: $cSecondaryText;
+}
+
+#message {
+  position: fixed;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  background: $cAction;
+  color: $cW;
+  margin: 0;
+  padding: 10px;
+  font-weight: 300;
+  transition: top 0.25s;
+
+  &.visible {
+    top: 0;
+  }
+}
+
+header {
+  overflow: hidden;
+  padding: 20px;
+
+  h1 {
+    float: left;
+    width: auto;
+  }
+
+  .logos {
+    float: right;
+    text-align: right;
+    width: 40%;
+
+    img {
+      max-height: 33px;
+      display: inline-block;
+      margin: 0 10px;
+      max-width: 48px;
+    }
+  }
+}
+
+.coin-list {
+  text-align: center;
+
+  li {
+    display: inline-block;
+    margin: 10px;
+  }
+}

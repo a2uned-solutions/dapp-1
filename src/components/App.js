@@ -5,9 +5,14 @@ import { Container } from 'reactstrap';
 import VotingTable from './VotingTable';
 import fetchContracts from '../helpers/fetchContracts';
 import Voting from '../helpers/Voting';
+
 import reactLogo from '../assets/images/reactLogo.svg';
 import ethereumLogo from '../assets/images/ethereumLogo.svg';
-import '../assets/styles/App.css';
+import btc from '../assets/images/crypto-icons/color/btc.svg';
+import ltc from '../assets/images/crypto-icons/color/ltc.svg';
+import eth from '../assets/images/crypto-icons/color/etc.svg';
+import doge from '../assets/images/crypto-icons/color/doge.svg';
+import bts from '../assets/images/crypto-icons/color/bts.svg';
 
 class App extends React.Component {
   state: {
@@ -45,10 +50,13 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-        <h1>
-          <img src={reactLogo} alt="reactLogo" /> A2uned First Dapp{' '}
-          <img src={ethereumLogo} alt="reactLogo" />{' '}
-        </h1>
+        <header>
+          <h1>A2uned First DApp</h1>
+          <div className="logos">
+            <img src={reactLogo} alt="reactLogo" /> +
+            <img src={ethereumLogo} alt="reactLogo" />
+          </div>
+        </header>
         {this.state.votes ? (
           <VotingTable
             candidateList={this.state.poll.candidateList}
@@ -57,6 +65,25 @@ class App extends React.Component {
             votePending={this.state.votePending}
           />
         ) : null}
+        <div>
+          <ul className="no-list coin-list">
+            <li>
+              <img src={btc} alt={''} />
+            </li>
+            <li>
+              <img src={ltc} alt={''} />
+            </li>
+            <li>
+              <img src={eth} alt={''} />
+            </li>
+            <li>
+              <img src={doge} alt={''} />
+            </li>
+            <li>
+              <img src={bts} alt={''} />
+            </li>
+          </ul>
+        </div>
       </Container>
     );
   }

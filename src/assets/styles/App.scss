@@ -1,13 +1,2 @@
-body {
-  color: #333;
-
-  img {
-    height: 80px;
-    padding-left: 25px;
-  }
-
-  h1 {
-    padding: 20px;
-    font-weight: 300;
-  }
-}
+@import "_vars.scss";
+@import "_global.scss";
