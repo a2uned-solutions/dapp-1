@@ -5,6 +5,8 @@ import { Container } from 'reactstrap';
 import VotingTable from './VotingTable';
 import fetchContracts from '../helpers/fetchContracts';
 import Voting from '../helpers/Voting';
+// import Cheers from '../helpers/Cheers';
+// import CheersApp from './CheersApp';
 
 import reactLogo from '../assets/images/reactLogo.svg';
 import ethereumLogo from '../assets/images/ethereumLogo.svg';
@@ -65,6 +67,8 @@ class App extends React.Component {
             votePending={this.state.votePending}
           />
         ) : null}
+        {/* TODO: Convert  */}
+        {/*<Cheers/>*/}
         <div>
           <ul className="no-list coin-list">
             <li>

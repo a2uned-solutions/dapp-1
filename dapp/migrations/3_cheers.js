@@ -1,12 +1,10 @@
 const deployInfo = require('../helpers/deployInfo');
 const Web3 = require('web3');
-const Voting = artifacts.require('Voting');
+const Cheers = artifacts.require('Cheers');
 const asciiToHex = (Web3.utils || {}).asciiToHex || Web3.prototype.fromAscii;
 //                 ^^^ web3 1.x                     ^^^ web3 0.20.X
 
-const candidates = ['Nathan', 'Micah', 'Lebron', 'Steph'];
-
 module.exports = async deployer => {
-  await deployer.deploy(Voting, candidates.map(asciiToHex));
-  return deployInfo(deployer, Voting);
+  await deployer.deploy(Cheers);
+  return deployInfo(deployer, Cheers);
 };
