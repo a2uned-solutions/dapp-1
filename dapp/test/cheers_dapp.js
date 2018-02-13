@@ -1,4 +1,4 @@
-let CheersDapp = artifacts.require('./CheersDap.sol');
+let CheersDapp = artifacts.require('../../CheersDapp.sol');
 
 contract('CheersDapp', function(accounts) {
   it('should assert true', function(done) {

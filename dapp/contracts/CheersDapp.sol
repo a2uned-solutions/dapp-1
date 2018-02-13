@@ -3,20 +3,22 @@ pragma solidity ^0.4.16;
 contract CheersDapp {
 
   // Escrow Variables
-  unit escrowBalance;
-  address public gamePlayer;
-  address public gameOwner;
+  uint256 escrowBalance;
+  //address public gamePlayer;
+  //address public gameOwner;
   address private escrow;
-  unit private start;
+  uint256 private start;
   bool gamePlayerApproved;
   bool gameOwnerApproved;
 
   // Game Variables
-  unit256 numOfAttempts = 0; // Count of game play attempts
-  address owner = msg.sender;
+  uint256 numOfAttempts = 0; // Count of game play attempts
+  address gameOwner = msg.sender;
+  address public player;
+  address public owner;
 
   // Constructor Function - Runs once upon initialization
-  function CheersDapp (address gamePlayerAddress, address gameOwnerAddress) {
+  function CheersDapp (address gamePlayerAddress, address gameOwnerAddress) public {
     player = gamePlayerAddress;
     owner = gameOwnerAddress;
     escrow = msg.sender;
@@ -26,7 +28,7 @@ contract CheersDapp {
   // Escrow Functions
   //-------------------
   function acceptContract () public {
-    if (msg.sender == buyer) {
+    if (msg.sender == player) {
       gamePlayerApproved = true;
     } else if (msg.sender == owner) {
       gameOwnerApproved = true;
@@ -40,24 +42,24 @@ contract CheersDapp {
   }
 
   function payEscrowBalance() private {
-    escrow.transfer(this.balance / 100);
-    if (seller.send(this.balance)) {
-      balance = 0;
+    escrow.transfer(escrowBalance / 100);
+    if (owner.send(escrowBalance)) {
+      escrowBalance = 0;
     } else {
-      throw;
+      revert();
     }
   }
 
   function desposit() public payable {
-    if (msg.sender == gamePlayer) {
-      balance += msg.value;
+    if (msg.sender == player) {
+      escrowBalance += msg.value;
     }
   }
 
   function cancel() public {
-    if (msg.sender == gamePlayer) {
+    if (msg.sender == player) {
       gamePlayerApproved = false;
-    } else if (msg.sender == gameOwner) {
+    } else if (msg.sender == owner) {
       gameOwnerApproved = false;
     }
 
@@ -67,8 +69,8 @@ contract CheersDapp {
   }
 
   function kill() public {
-    if (msg.sender == owner) {
-      selfdestruct(owner);
+    if (msg.sender == gameOwner) {
+      selfdestruct(gameOwner);
     } else if (msg.sender == escrow) {
       selfdestruct(player);
     }
@@ -79,16 +81,16 @@ contract CheersDapp {
   }
 
   // Game Functions
-  //---------------------
+  //--------------------
   function addAttempt() public {
     numOfAttempts++;
   }
 
-  function getNumOfAttempts() public constant returns (unit256) {
+  function getNumOfAttempts() public constant returns (uint256) {
     return numOfAttempts;
   }
 
-  function resetNumOfAttempts() {
+  function resetNumOfAttempts() public {
     numOfAttempts = 0;
   }
 
