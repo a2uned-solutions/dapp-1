@@ -3,16 +3,16 @@ pragma solidity ^0.4.16;
 contract CheersDapp {
 
   // Escrow Variables
-  uint256 escrowBalance;
+  uint escrowBalance;
   //address public gamePlayer;
   //address public gameOwner;
   address private escrow;
-  uint256 private start;
+  uint private start;
   bool gamePlayerApproved;
   bool gameOwnerApproved;
 
   // Game Variables
-  uint256 numOfAttempts = 0; // Count of game play attempts
+  uint numOfAttempts = 0; // Count of game play attempts
   address gameOwner = msg.sender;
   address public player;
   address public owner;
@@ -22,7 +22,6 @@ contract CheersDapp {
     player = gamePlayerAddress;
     owner = gameOwnerAddress;
     escrow = msg.sender;
-    start = now; // alias for block.timestamp
   }
 
   // Escrow Functions
@@ -82,16 +81,16 @@ contract CheersDapp {
 
   // Game Functions
   //--------------------
-  function addAttempt() public {
-    numOfAttempts++;
+  function addAttempt() public returns (uint) {
+    return numOfAttempts += 1;
   }
 
-  function getNumOfAttempts() public constant returns (uint256) {
+  function getNumOfAttempts() public constant returns (uint) {
     return numOfAttempts;
   }
 
-  function resetNumOfAttempts() public {
-    numOfAttempts = 0;
+  function resetNumOfAttempts() public constant returns (uint) {
+    return numOfAttempts = 0;
   }
 
 }

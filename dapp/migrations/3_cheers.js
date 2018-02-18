@@ -1,10 +1,10 @@
 const deployInfo = require('../helpers/deployInfo');
 const Web3 = require('web3');
-const Cheers = artifacts.require('Cheers');
+const CheersDapp = artifacts.require('CheersDapp');
 const asciiToHex = (Web3.utils || {}).asciiToHex || Web3.prototype.fromAscii;
 //                 ^^^ web3 1.x                     ^^^ web3 0.20.X
 
 module.exports = async deployer => {
-  await deployer.deploy(Cheers);
-  return deployInfo(deployer, Cheers);
+  await deployer.deploy(CheersDapp);
+  return deployInfo(deployer, CheersDapp);
 };
