@@ -73,6 +73,15 @@ button {
     background: $cAction2;
     color: $cW;
   }
+
+  &:disabled {
+    background: #ccc;
+  }
+}
+
+.btn-large {
+  padding: 10px 30px;
+  font-size: 1.8rem;
 }
 
 // Helper Classes
@@ -126,34 +135,129 @@ button {
   }
 }
 
+.block {
+  display: block;
+}
+
+.small {
+  font-size: 1.2rem;
+  margin: 10px;
+}
+
+.flex {
+  display: flex;
+
+  .col-50 {
+    width: 50%;
+    padding: 10px;
+  }
+}
+
 header {
   overflow: hidden;
   padding: 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(82,116,53,1) 0%,rgba(56,56,56,1) 100%);
 
   h1 {
-    float: left;
     width: auto;
+    line-height: 1;
+    color: $cW;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+    padding: 0;
+
+    a {
+      color: $cW;
+    }
   }
 
-  .logos {
-    float: right;
-    text-align: right;
-    width: 40%;
+  i {
+    color: $cSecondary;
+    transform: rotate(45deg);
+  }
 
-    img {
-      max-height: 33px;
-      display: inline-block;
-      margin: 0 10px;
-      max-width: 48px;
+  p {
+    color: $cSecondary;
+    border-top: 1px solid #333;
+    display: inline-block;
+    padding-top: 10px;
+    font-size: 1.4rem;
+  }
+}
+
+.tac {
+  text-align: center;
+}
+
+.bar {
+  list-style: none;
+  margin: 0 0 50px 0;
+  overflow: hidden;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    text-align: center;
+    position: relative;
+
+    span {
+      padding: 5px;
+      background: $cAction;
+      border-right: 1px solid #fff;
+      color: #fff;
+      display: block;
+      font-size: 2rem;
+    }
+
+    .text {
+      font-size: 1.3rem;
+      border: none;
+      padding: 0;
+    }
+
+    p {
+      position: absolute;
+      font-size: 1.3rem;
+      bottom: -51px;
+      font-size: 1.3rem;
+      left: 40%;
     }
   }
 }
 
-.coin-list {
-  text-align: center;
+.w-10 {
+  width: 10%;
+}
 
-  li {
-    display: inline-block;
-    margin: 10px;
+.w-40 {
+  width: 40%;
+}
+
+// TEMP
+.game-link {
+  float: left;
+  margin: 30px;
+}
+.example {
+  float: right;
+  margin: 30px;
+
+  table {
+    font-size: 12px;
   }
+
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+  }
+}
+
+.container {
+  overflow: hidden;
+}
+
+.home {
+  clear: both;
 }

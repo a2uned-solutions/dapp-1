@@ -14,6 +14,9 @@ export default class Voting {
   constructor(contract) {
     this.contract = contract;
 
+    console.log('Voting Contract');
+    console.log(contract);
+
     const getCandidateList = Promise.promisify(
       this.contract.getCandidateList.call,
       { context: this.contract.getCandidateList },

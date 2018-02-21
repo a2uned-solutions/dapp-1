@@ -1,20 +1,13 @@
 // @flow
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import VotingTable from './VotingTable';
 import fetchContracts from '../helpers/fetchContracts';
 import Voting from '../helpers/Voting';
-import Cheers from '../helpers/Cheers';
-import CheersApp from './CheersApp';
-
-import reactLogo from '../assets/images/reactLogo.svg';
-import ethereumLogo from '../assets/images/ethereumLogo.svg';
-import btc from '../assets/images/crypto-icons/color/btc.svg';
-import ltc from '../assets/images/crypto-icons/color/ltc.svg';
-import eth from '../assets/images/crypto-icons/color/etc.svg';
-import doge from '../assets/images/crypto-icons/color/doge.svg';
-import bts from '../assets/images/crypto-icons/color/bts.svg';
+import CheersDapp from '../helpers/CheersDapp';
+// import CheersApp from './CheersApp';
 
 class App extends React.Component {
   state: {
@@ -29,17 +22,22 @@ class App extends React.Component {
       votePending: false,
       votes: null,
       poll: null,
+      game: null
     };
   }
 
   async componentDidMount(): any {
-    const { contracts } = await fetchContracts(this.props.network, ['Voting']);
+    const { contracts } = await fetchContracts(this.props.network, [ 'Voting', 'CheersDapp' ]);
     const poll = new Voting(contracts.Voting);
     await poll.initCandidateList();
     const votes = await poll.fetchCandidateVotes();
+
+    const game = new CheersDapp(contracts.CheersDapp);
+
     this.setState({
       votes,
       poll,
+      game,
     });
   }
 
@@ -52,13 +50,13 @@ class App extends React.Component {
   render() {
     return (
       <Container>
-        <header>
-          <h1>A2uned First DApp</h1>
-          <div className="logos">
-            <img src={reactLogo} alt="reactLogo" /> +
-            <img src={ethereumLogo} alt="reactLogo" />
-          </div>
-        </header>
+        <div className="game-link">
+          <Link to="/home">
+            <button className="btn-large">Go To CheersDapp</button>
+          </Link>
+        </div>
+        <div className="example">
+          <h3>Working Example:</h3>
         {this.state.votes ? (
           <VotingTable
             candidateList={this.state.poll.candidateList}
@@ -67,26 +65,6 @@ class App extends React.Component {
             votePending={this.state.votePending}
           />
         ) : null}
-        {/* TODO: Convert  */}
-        {/*<Cheers/>*/}
-        <div>
-          <ul className="no-list coin-list">
-            <li>
-              <img src={btc} alt={''} />
-            </li>
-            <li>
-              <img src={ltc} alt={''} />
-            </li>
-            <li>
-              <img src={eth} alt={''} />
-            </li>
-            <li>
-              <img src={doge} alt={''} />
-            </li>
-            <li>
-              <img src={bts} alt={''} />
-            </li>
-          </ul>
         </div>
       </Container>
     );

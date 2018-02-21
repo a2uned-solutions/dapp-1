@@ -1,6 +1,5 @@
 import Promise from 'bluebird';
 import Web3 from 'web3';
-import _ from 'lodash';
 
 const { asciiToHex, hexToAscii } =
   // web3 1.X
@@ -10,9 +9,12 @@ const { asciiToHex, hexToAscii } =
     hexToAscii: Web3.prototype.toAscii,
   };
 
-export default class Cheers {
+export default class CheersDapp {
   constructor(contract) {
     this.contract = contract;
+
+    console.log('+++ CheersDapp Contract +++');
+    console.log(contract);
 
     const getTransaction = Promise.promisify(
       this.contract._eth.getTransaction,

@@ -1,0 +1,32 @@
+.home {
+
+  .app-body {
+    text-align: left;
+    padding: 30px;
+    display: block;
+
+    .col-50 {
+      border: 1px solid $cSecondary;
+      margin: 10px;
+    }
+
+    hr {
+      margin: 40px 0;
+    }
+  }
+
+  .begin-game {
+    margin: -10px -10px 30px -10px;
+    padding: 20px;
+    text-align: center;
+    background: $cSecondary;
+
+    h3 {
+      font-weight: 300;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  }
+}

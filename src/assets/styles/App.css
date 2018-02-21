@@ -60,6 +60,15 @@ button {
   button:focus {
     background: #86be40;
     color: #ffffff; }
+  .btn:disabled,
+  .btn-primary:disabled,
+  .button:disabled,
+  button:disabled {
+    background: #ccc; }
+
+.btn-large {
+  padding: 10px 30px;
+  font-size: 1.8rem; }
 
 .block {
   display: block; }
@@ -101,26 +110,266 @@ button {
   #message.visible {
     top: 0; }
 
+.block {
+  display: block; }
+
+.small {
+  font-size: 1.2rem;
+  margin: 10px; }
+
+.flex {
+  display: flex; }
+  .flex .col-50 {
+    width: 50%;
+    padding: 10px; }
+
 header {
   overflow: hidden;
-  padding: 20px; }
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, #527435 0%, #383838 100%); }
   header h1 {
-    float: left;
-    width: auto; }
-  header .logos {
-    float: right;
-    text-align: right;
-    width: 40%; }
-    header .logos img {
-      max-height: 33px;
-      display: inline-block;
-      margin: 0 10px;
-      max-width: 48px; }
-
-.coin-list {
-  text-align: center; }
-  .coin-list li {
+    width: auto;
+    line-height: 1;
+    color: #ffffff;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+    padding: 0; }
+    header h1 a {
+      color: #ffffff; }
+  header i {
+    color: #f5f6f7;
+    transform: rotate(45deg); }
+  header p {
+    color: #f5f6f7;
+    border-top: 1px solid #333;
     display: inline-block;
+    padding-top: 10px;
+    font-size: 1.4rem; }
+
+.tac {
+  text-align: center; }
+
+.bar {
+  list-style: none;
+  margin: 0 0 50px 0;
+  overflow: hidden;
+  padding: 0; }
+  .bar li {
+    display: inline-block;
+    text-align: center;
+    position: relative; }
+    .bar li span {
+      padding: 5px;
+      background: #527435;
+      border-right: 1px solid #fff;
+      color: #fff;
+      display: block;
+      font-size: 2rem; }
+    .bar li .text {
+      font-size: 1.3rem;
+      border: none;
+      padding: 0; }
+    .bar li p {
+      position: absolute;
+      font-size: 1.3rem;
+      bottom: -51px;
+      font-size: 1.3rem;
+      left: 40%; }
+
+.w-10 {
+  width: 10%; }
+
+.w-40 {
+  width: 40%; }
+
+.game-link {
+  float: left;
+  margin: 30px; }
+
+.example {
+  float: right;
+  margin: 30px; }
+  .example table {
+    font-size: 12px; }
+  .example h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 14px; }
+
+.container {
+  overflow: hidden; }
+
+.home {
+  clear: both; }
+
+.app-body {
+  display: flex; }
+
+.game {
+  width: 78%;
+  padding: 0;
+  text-align: center; }
+  .game .stats-actions {
+    display: flex;
+    margin: 0; }
+    .game .stats-actions li {
+      width: 33%;
+      padding: 10px 0;
+      background: #f5f6f7;
+      color: #86be40; }
+      .game .stats-actions li:nth-child(2) {
+        border-left: 1px solid #ffffff;
+        border-right: 1px solid #ffffff; }
+      .game .stats-actions li.game-action {
+        padding: 0; }
+        .game .stats-actions li.game-action button {
+          width: 100%;
+          height: 100%; }
+      .game .stats-actions li.time span {
+        font-weight: 900;
+        color: #9B3800; }
+      .game .stats-actions li.time strong {
+        color: #9B3800; }
+      .game .stats-actions li strong {
+        font-size: 1.4rem;
+        text-transform: uppercase; }
+      .game .stats-actions li span {
+        color: #527435;
+        font-weight: 900;
+        font-size: 2rem;
+        display: block; }
+  .game .status {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    background: #86be40;
+    color: #ffffff;
+    padding: 10px;
+    font-weight: 900; }
+    .game .status.new, .game .status.playing {
+      opacity: 0; }
+    .game .status.lost {
+      background: #9B3800;
+      color: #ffffff; }
+
+.challenge {
+  overflow: hidden;
+  position: relative;
+  min-height: 400px; }
+  .challenge .coin {
+    text-align: center;
+    padding: 4% 3%;
+    width: 19%;
+    float: left; }
+    .challenge .coin img {
+      opacity: 0;
+      width: 90%; }
+    .challenge .coin .value {
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      display: none; }
+    .challenge .coin .id {
+      display: none; }
+    .challenge .coin.active img {
+      opacity: 1;
+      cursor: pointer;
+      transition: opacity 0.25s ease-out 0.25s; }
+  .challenge .intro {
+    margin: 40px 30px;
+    text-align: center; }
+    .challenge .intro h2 {
+      font-size: 2.4rem;
+      line-height: 1;
+      padding: 0;
+      margin: 0 0 15px 0; }
+    .challenge .intro p {
+      margin: 0 0 35px 0; }
+    .challenge .intro button {
+      font-size: 1.8rem;
+      padding: 15px 40px; }
+
+.next-game-action {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8); }
+  .next-game-action .message {
+    margin: 50px auto;
+    padding: 25px;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid #527435;
+    background: #ffffff; }
+    .next-game-action .message h2 {
+      color: #527435;
+      font-weight: 300;
+      text-transform: uppercase;
+      margin: 0 0 20px 0;
+      padding: 0;
+      line-height: 1; }
+    .next-game-action .message h3,
+    .next-game-action .message h4 {
+      margin: 0 0 7px 0;
+      padding: 0;
+      line-height: 1; }
+    .next-game-action .message button {
+      margin-top: 25px;
+      padding: 20px;
+      display: block;
+      width: 100%; }
+  .next-game-action.lost .message {
+    border: 1px solid #9B3800; }
+    .next-game-action.lost .message h2 {
+      color: #9B3800; }
+
+.high-scores {
+  width: 22%;
+  overflow: hidden;
+  padding: 50px 30px 30px;
+  font-size: 1.6rem; }
+  .high-scores h3 {
+    font-size: 1.6rem;
+    font-weight: 900; }
+    .high-scores h3 span {
+      color: #527435;
+      font-weight: 300;
+      background: #f5f6f7;
+      padding: 1px 5px; }
+  .high-scores li {
+    padding: 0;
+    margin: 0 0 10px 0; }
+    .high-scores li strong {
+      color: #86be40;
+      font-size: 1.6rem;
+      padding: 0 10px 0 0; }
+    .high-scores li span {
+      font-size: 1.2rem; }
+  .high-scores .current-funds-raised {
+    margin: 0 0 10px 0;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #d2d2d2; }
+    .high-scores .current-funds-raised li span {
+      color: #527435;
+      font-weight: 600;
+      font-size: 1.4rem; }
+
+.home .app-body {
+  text-align: left;
+  padding: 30px;
+  display: block; }
+  .home .app-body .col-50 {
+    border: 1px solid #f5f6f7;
     margin: 10px; }
+  .home .app-body hr {
+    margin: 40px 0; }
+.home .begin-game {
+  margin: -10px -10px 30px -10px;
+  padding: 20px;
+  text-align: center;
+  background: #f5f6f7; }
+  .home .begin-game h3 {
+    font-weight: 300; }
+  .home .begin-game button {
+    margin-top: 20px; }
 
 /*# sourceMappingURL=App.css.map */

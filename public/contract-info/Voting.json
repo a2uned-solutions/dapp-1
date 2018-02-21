@@ -1,4 +1,147 @@
 {
+  "development": {
+    "networkName": "development",
+    "networkLocation": {
+      "host": "127.0.0.1",
+      "port": 8545,
+      "network_id": "1519173826888"
+    },
+    "contractName": "Voting",
+    "abi": [
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "candidate",
+            "type": "bytes32"
+          }
+        ],
+        "name": "totalVotesFor",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "candidate",
+            "type": "bytes32"
+          }
+        ],
+        "name": "validCandidate",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bool"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [],
+        "name": "kill",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "name": "votesReceived",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "candidateList",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bytes32"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "candidate",
+            "type": "bytes32"
+          }
+        ],
+        "name": "voteForCandidate",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "getCandidateList",
+        "outputs": [
+          {
+            "name": "",
+            "type": "bytes32[]"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "name": "candidateNames",
+            "type": "bytes32[]"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      }
+    ],
+    "compiler": {
+      "name": "solc",
+      "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
+    },
+    "schemaVersion": "1.0.1",
+    "updatedAt": "2018-02-21T01:19:16.399Z",
+    "address": "0x0e8c6ded79c1d5551f85ac73d9d93697dae78819",
+    "network_id": "1519173826888"
+  },
   "ganacheUI": {
     "networkName": "ganacheUI",
     "networkLocation": {
@@ -141,148 +284,5 @@
     "updatedAt": "2018-02-07T02:13:55.470Z",
     "address": "0xbc168cb4cbbbc85dd949dc15104bbc5ff4f1445d",
     "network_id": "5777"
-  },
-  "development": {
-    "networkName": "development",
-    "networkLocation": {
-      "host": "127.0.0.1",
-      "port": 8545,
-      "network_id": "1517759716387"
-    },
-    "contractName": "Voting",
-    "abi": [
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "candidate",
-            "type": "bytes32"
-          }
-        ],
-        "name": "totalVotesFor",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint8"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "candidate",
-            "type": "bytes32"
-          }
-        ],
-        "name": "validCandidate",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bool"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [],
-        "name": "kill",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "name": "votesReceived",
-        "outputs": [
-          {
-            "name": "",
-            "type": "uint8"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [
-          {
-            "name": "",
-            "type": "uint256"
-          }
-        ],
-        "name": "candidateList",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bytes32"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "constant": false,
-        "inputs": [
-          {
-            "name": "candidate",
-            "type": "bytes32"
-          }
-        ],
-        "name": "voteForCandidate",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-      },
-      {
-        "constant": true,
-        "inputs": [],
-        "name": "getCandidateList",
-        "outputs": [
-          {
-            "name": "",
-            "type": "bytes32[]"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-      },
-      {
-        "inputs": [
-          {
-            "name": "candidateNames",
-            "type": "bytes32[]"
-          }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "constructor"
-      }
-    ],
-    "compiler": {
-      "name": "solc",
-      "version": "0.4.18+commit.9cf6e910.Emscripten.clang"
-    },
-    "schemaVersion": "1.0.1",
-    "updatedAt": "2018-02-04T16:20:21.618Z",
-    "address": "0x132ff0001012535cafc62b4b65c010707c4ef2a7",
-    "network_id": "1517759716387"
   }
 }
