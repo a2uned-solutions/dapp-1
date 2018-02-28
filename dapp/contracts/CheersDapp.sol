@@ -3,25 +3,32 @@ pragma solidity ^0.4.16;
 contract CheersDapp {
 
   // Escrow Variables
-  uint escrowBalance;
-  //address public gamePlayer;
-  //address public gameOwner;
-  address private escrow;
-  uint private start;
+  address public escrow;
+  address public escrowAddress;
+  uint escrowBalance; //Not sure this needs to be stored within the contract
+  uint public amountWagered;
+  uint start;
   bool gamePlayerApproved;
   bool gameOwnerApproved;
 
   // Game Variables
-  uint numOfAttempts = 0; // Count of game play attempts
+  uint numOfAttempts = 0; // Count of game play attempts. Not sure this needs to be stored witin the contract
   address gameOwner = msg.sender;
   address public player;
   address public owner;
 
+  // Events
+  //------------------
+  event ReturnTransactionDetails(address _sender, uint _value);
+
   // Constructor Function - Runs once upon initialization
-  function CheersDapp (address gamePlayerAddress, address gameOwnerAddress) public {
-    player = gamePlayerAddress;
-    owner = gameOwnerAddress;
-    escrow = msg.sender;
+  function CheersDapp (address _gamePlayerAddress, address _gameOwnerAddress, address _escrowAddress, uint _amountWagered) public {
+    player = _gamePlayerAddress;
+    owner = _gameOwnerAddress;
+    amountWagered = _amountWagered;
+    //escrow = msg.sender;
+    escrowAddress = _escrowAddress;
+    start = now; // alias for block.timestamp
   }
 
   // Escrow Functions
@@ -35,6 +42,7 @@ contract CheersDapp {
 
     if (gamePlayerApproved && gameOwnerApproved) {
       payEscrowBalance();
+      // I think this should be deposit to escrow?
     } else if (gamePlayerApproved && !gameOwnerApproved && now > start + 30 days) {
       selfdestruct(player);
     }
@@ -49,10 +57,15 @@ contract CheersDapp {
     }
   }
 
-  function desposit() public payable {
+  function deposit() public payable {
     if (msg.sender == player) {
+      // I think this should use address.transfer?
       escrowBalance += msg.value;
+      ReturnTransactionDetails(msg.sender, msg.value);
     }
+
+    // This is currently for testing purposes;
+    //escrowAddress.send(2);
   }
 
   function cancel() public {
@@ -65,6 +78,11 @@ contract CheersDapp {
     if (!gamePlayerApproved && !gameOwnerApproved) {
       selfdestruct(player);
     }
+  }
+
+  function getBalance() public constant returns (uint256) {
+    var msgSenderAddress = msg.sender;
+    return msgSenderAddress.balance;
   }
 
   function kill() public {
