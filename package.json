@@ -18,7 +18,7 @@
     "reactstrap": "^5.0.0-alpha.4",
     "semantic-ui-react": "^0.78.2",
     "should": "^13.2.1",
-    "solc": "^0.4.19",
+    "solc": "^0.4.20",
     "truffle-privatekey-provider": "^0.0.4",
     "web3": "^0.20.4"
   },

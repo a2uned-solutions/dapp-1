@@ -1,57 +1,60 @@
 const CheersDapp = artifacts.require('CheersDapp');
-const should = require('should');
 
-contract('CheersDapp', function(accounts) {
-  let token;
+contract('CheersDapp', function([player]) {
+  let cheersDapp;
 
-  it('should deploy the contract', function(done) {
-    CheersDapp.deployed().then(function(instance) {
-      token = instance;
-      should.exist(token);
-      done();
-    });
+  it('should deploy the contract', async function() {
+     cheersDapp = await CheersDapp.deployed();
   });
 
-  it('should return 0 number of attempts', function(done) {
-    token.getNumOfAttempts.call().then(function(result) {
-      result.toNumber().should.equal(0);
-      done();
-    });
+  it('should send a transaction to the contract and increment games played', async function() {
+    let transactionData = {
+      from: player,
+      value: 1e+18
+    };
+    let transaction = await cheersDapp.sendTransaction(transactionData);
+    let value = transaction.logs[0].args._value;
+    let gamesPlayed = transaction.logs[0].args._gamesPlayed;
+    assert.equal(1, gamesPlayed.toNumber());
+    assert.equal(1e+18, value.toNumber());
   });
 
-  it('should increment and return 1 number of attempts', function(done) {
-    token.addAttempt.call().then(function(result) {
-      result.toNumber().should.equal(1);
-      done();
-    });
+  it('should get the transaction balance', async function() {
+    let balance = await web3.eth.getBalance(CheersDapp.address);
+    assert.equal(1e+18, balance.toNumber());
   });
 
-  //let escrow;
-  let newInstance;
-  it('should create a new contract and have constructor variables defined', async function() {
-    newInstance = await CheersDapp.new(accounts[0], accounts[1], accounts[2], 150000000000);
-    let player = await newInstance.player.call();
-    let owner = await newInstance.owner.call();
-    let amountWagered = await newInstance.amountWagered.call();
-    let escrowAddress = await newInstance.escrowAddress.call();
-    //escrow = await newInstance.escrow.call();
-    player.should.equal(accounts[0]);
-    owner.should.equal(accounts[1]);
-    escrowAddress.should.equal(accounts[2]);
-    amountWagered.toNumber().should.equal(150000000000);
+  it('should send a transaction to the contract and increment games played again', async function() {
+    let transactionData = {
+      from: player,
+      value: 1e+18
+    };
+    let transaction = await cheersDapp.sendTransaction(transactionData);
+    let value = transaction.logs[0].args._value;
+    let gamesPlayed = transaction.logs[0].args._gamesPlayed;
+    assert.equal(2, gamesPlayed.toNumber());
+    assert.equal(1e+18, value.toNumber());
   });
 
-  // TODO need tests for accept contract
-  // TODO need tests to confirm msg.sender
+  it('should get the transaction balance again and should be doubled', async function() {
+    let balance = await web3.eth.getBalance(CheersDapp.address);
+    assert.equal(2e+18, balance.toNumber());
+  });
 
-  it('should deposit the amount wagered to escrow', async function() {
-    let previousEscrowBalance = await newInstance.getBalance();
-    let depositTransaction = await newInstance.deposit();
-    let escrowBalance = await newInstance.getBalance();
-    // TODO returned transaction has null contractAddress. See if we can link that.
-    console.log(depositTransaction);
-    console.log(depositTransaction.logs[0].args);
-    console.log(previousEscrowBalance.toNumber());
-    console.log(escrowBalance.toNumber());
+  it('should store the game data on the contract blockchain', async function() {
+    let address = player;
+    let rounds = 4;
+    let time = 1250;
+    let response = await cheersDapp.storeGameData(address, rounds, time);
+    console.log(response.logs[0].args);
+  });
+
+  it('should get all stored game data', async function() {
+    let gameData = await cheersDapp.getStoredGameData(2);
+    console.log(gameData);
   });
 });
+
+
+
+
