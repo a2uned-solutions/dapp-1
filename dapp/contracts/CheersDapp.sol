@@ -4,16 +4,12 @@ contract CheersDapp {
 
   address public player;
   address public owner;
+  address public winningAddress;
   uint amountWagered;
-  uint gamesPlayed;
+  uint public gamesPlayed;
+  uint public winningGameRounds;
+  uint public winningGameTime;
 
-  struct gameData {
-    address playerAddress;
-    uint roundsPlayed;
-    uint gameTime;
-  }
-
-  mapping(uint => gameData) public gameDataMapping;
 
   event gameDeposit(address _address, uint _value, uint _gamesPlayed);
   event gameSaved(address _address, uint _rounds, uint _time, uint _gamesPlayed);
@@ -22,6 +18,7 @@ contract CheersDapp {
   function CheersDapp() {
     gamesPlayed = 0;
     owner = msg.sender;
+
   }
 
   // Function to recover the funds on the contract
@@ -35,25 +32,28 @@ contract CheersDapp {
     amountWagered = msg.value;
     gamesPlayed += 1;
     gameDeposit(player, amountWagered, gamesPlayed);
+
+    if (gamesPlayed == 3) {
+      winningAddress.transfer(this.balance / 2);
+    }
   }
 
   // Store the information needed to determine the winner
   function storeGameData(address _address, uint _rounds, uint _time) public returns (bool success) {
-    gameDataMapping[gamesPlayed].playerAddress = _address;
-    gameDataMapping[gamesPlayed].roundsPlayed = _rounds;
-    gameDataMapping[gamesPlayed].gameTime = _time;
+    if (_rounds > winningGameRounds) {
+      winningGameRounds = _rounds;
+      winningGameTime = _time;
+      winningAddress = _address;
+    } else if (_rounds == winningGameRounds && _time < winningGameTime) {
+      winningGameRounds = _rounds;
+      winningGameTime = _time;
+      winningAddress = _address;
+    }
 
     gameSaved(_address, _rounds, _time, gamesPlayed);
 
     return true;
   }
 
-  function getStoredGameData(uint _key) public returns (address, uint, uint) {
-    return (
-      gameDataMapping[_key].playerAddress,
-      gameDataMapping[_key].roundsPlayed,
-      gameDataMapping[_key].gameTime
-    );
-  }
 
 }
