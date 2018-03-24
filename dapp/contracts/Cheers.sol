@@ -4,7 +4,7 @@ contract Cheers {
 
   address owner;
   uint8 gamesPlayed;
-  uint8 winningGameIndex;
+  uint256 winningGameIndex;
 
   struct Game {
     address player;
@@ -47,7 +47,7 @@ contract Cheers {
 
   // This function will store every game
   // to the game array
-  function _createGame(address player, uint256 _wagered, uint256 _time, uint16 _rounds) {
+  function _createGame(address _player, uint256 _wagered, uint256 _time, uint16 _rounds) {
     games.push(Game(_player, _time, _wagered, _rounds)) - 1;
   }
 
