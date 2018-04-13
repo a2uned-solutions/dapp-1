@@ -4,7 +4,7 @@ contract Cheers {
 
   address owner;
   uint8 gamesPlayed;
-  uint8 winningGameIndex;
+  uint256 winningGameIndex;
 
   struct Game {
     address player;
@@ -15,6 +15,8 @@ contract Cheers {
 
   Game[] public games;
   Game[] public winningGames;
+
+  event newGameEvent(uint256 _time, uint256 _rounds, uint8 _gamesPlayed);
 
   // Constructor function
   function Cheers() {
@@ -33,10 +35,15 @@ contract Cheers {
       _createWinningGame(player, amountWagered, _time, _rounds);
     } else {
       Game storage storageGame = winningGames[winningGameIndex];
-      // TODO
-      // This needs to have logic to check against the
-      // last game rounds played or time played if rounds tied
+      if (_rounds > storageGame.roundsPlayed) {
+        _createWinningGame(player, amountWagered, _time, _rounds);
+      } else if (_rounds == storageGame.roundsPlayed && _time > storageGame.gameTime) {
+        _createWinningGame(player, amountWagered, _time, _rounds);
+      }
+      // TODO how should we handle a tie of rounds and time?
     }
+    gamesPlayed++;
+    newGameEvent(_time, _rounds, gamesPlayed);
   }
 
   // This function will store the winning game
@@ -47,8 +54,11 @@ contract Cheers {
 
   // This function will store every game
   // to the game array
-  function _createGame(address player, uint256 _wagered, uint256 _time, uint16 _rounds) {
+  function _createGame(address _player, uint256 _wagered, uint256 _time, uint16 _rounds) {
     games.push(Game(_player, _time, _wagered, _rounds)) - 1;
+    if (_getGamesCount() == 100) {
+      _payout();
+    }
   }
 
   // Will view here save tx cost?
@@ -68,5 +78,8 @@ contract Cheers {
   // played and payout the contract balance
   function _payout() internal {
     // TODO complete this
+    // TODO should this kill/end the contract?
+    Game storage storageGame = winningGames[winningGameIndex];
+    storageGame.player.transfer(this.balance / 2);
   }
 }
