@@ -38,4 +38,18 @@ contract('Cheers', function([player]) {
     let balance = await web3.eth.getBalance(cheers.address);
     assert.equal(6e+18, balance.toNumber());
   });
+
+  it('should get the second game', async function() {
+    let game = await cheers.games(1);
+    assert.equal(game[1].toNumber(), 10);
+    assert.equal(game[2].toNumber(), 2e+18);
+    assert.equal(game[3].toNumber(), 1);
+  });
+
+  it('should get the winning game', async function() {
+    let winningGame = await cheers.winningGames(0);
+    assert.equal(winningGame[1].toNumber(), 120);
+    assert.equal(winningGame[2].toNumber(), 4e+18);
+    assert.equal(winningGame[3].toNumber(), 5);
+  });
 });
